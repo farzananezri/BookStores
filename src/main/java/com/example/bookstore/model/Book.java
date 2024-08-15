@@ -14,8 +14,9 @@ import java.util.List;
 @NoArgsConstructor
 public class Book {
 
+    private Long Id;
     private String bookTitle;
     private String author;
-    private BigDecimal price;
+    private Double price;
     private String publisher;
 }
