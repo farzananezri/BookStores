@@ -1,7 +1,9 @@
 package com.example.bookstore.service;
 
 import com.example.bookstore.model.Book;
+import com.example.bookstore.model.BookEntity;
 import com.example.bookstore.model.BookFEResp;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,9 +33,10 @@ public class BookStoreServiceImpl implements BookStoreService{
 
     public BookFEResp createBook(Book book) {
         BookEntity bookEntity = BookEntity.builder()
-                .bookId(book.getId())
                 .title(book.getBookTitle())
+                .author(book.getAuthor())
                 .price(book.getPrice())
+                .publisher(book.getPublisher())
                 .build();
 
         try{
@@ -46,14 +49,18 @@ public class BookStoreServiceImpl implements BookStoreService{
         }
     }
 
+    @Override
+    @Transactional
     public BookFEResp updateBook(Long id, Book updatedBook) {
-        BookEntity book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
-        book.setTitle(updatedBook.getBookTitle());
-        book.setAuthor(updatedBook.getAuthor());
-        book.setPrice(updatedBook.getPrice());
-
         try{
-            bookRepository.save(book);
+            bookRepository.updateBook(
+                    id,
+                    updatedBook.getBookTitle(),
+                    updatedBook.getAuthor(),
+                    updatedBook.getPrice(),
+                    updatedBook.getPublisher()
+            );
+
             return BookFEResp.builder().statusCode("000").statusDEscription("Record updated successfully").build();
         }
         catch (Exception e){
@@ -63,8 +70,16 @@ public class BookStoreServiceImpl implements BookStoreService{
 
     }
 
-    public void deleteBook(Long id) {
-        bookRepository.deleteById(id);
+    public BookFEResp deleteBook(Long id) {
+        try{
+            bookRepository.deleteById(id);
+            return BookFEResp.builder().statusCode("000").statusDEscription("Record deleted successfully").build();
+        }
+        catch (Exception e){
+            log.info("Error during update {}", e);
+            return BookFEResp.builder().statusCode("999").statusDEscription("Error during delete record").build();
+        }
+
     }
 
     @Override
@@ -79,6 +94,8 @@ public class BookStoreServiceImpl implements BookStoreService{
         return Book.builder()
                 .Id(bookEntity.getBookId())
                 .bookTitle(bookEntity.getTitle())
+                .author(bookEntity.getAuthor())
+                .publisher(bookEntity.getPublisher())
                 .price(bookEntity.getPrice())
                 .build();
     }

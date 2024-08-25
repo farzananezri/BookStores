@@ -1,4 +1,4 @@
-package com.example.bookstore.service;
+package com.example.bookstore.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -14,9 +14,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class BookEntity {
     @Id
-    @Column(name = "book_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
     private Long bookId;
-
     private String title;
     private String author;
     private Double price;
