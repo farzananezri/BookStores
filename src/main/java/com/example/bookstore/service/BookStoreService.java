@@ -15,7 +15,7 @@ public interface BookStoreService {
 
     BookFEResp updateBook(Long id, Book updatedBook);
 
-    void deleteBook(Long id);
+    BookFEResp deleteBook(Long id);
 
     List<Book> getAllBookAvailable();
 }

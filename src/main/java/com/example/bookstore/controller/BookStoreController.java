@@ -20,6 +20,11 @@ public class BookStoreController {
         return bookStoreService.getAllBookTitle();
     }
 
+    @GetMapping("/getAllBook")
+    public List<Book> getAllBook(){
+        return bookStoreService.getAllBookAvailable();
+    }
+
     // Create a new book
     @PostMapping("/create")
     public BookFEResp createBook(@RequestBody Book book) {
@@ -34,7 +39,7 @@ public class BookStoreController {
 
     // Delete a book
     @DeleteMapping("/delete/{id}")
-    public void deleteBook(@PathVariable Long id) {
-        bookStoreService.deleteBook(id);
+    public BookFEResp deleteBook(@PathVariable Long id) {
+       return bookStoreService.deleteBook(id);
     }
 }
