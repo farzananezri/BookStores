@@ -33,29 +33,29 @@ mvn spring-boot:run
 
 ## API Endpoints
 
-1. /api/getAllBook
-URL: /books
-Method: GET
-Response: JSON array of all books
+1. Get all book available
+ URL: /api/getAllBook
+ Method: GET
+ Response: JSON array of all books
 
 2. Get all title of book available
-URL: /api/getAllBookTitle
-Method: GET
-Response: List of String of all the title available
+ URL: /api/getAllBookTitle
+ Method: GET
+ Response: List of String of all the title available
 
 3. Create a new book
-URL: /books
-Method: POST
-Request Body: JSON object representing the new book
-Response: JSON object of the created book
+ URL: /api/create
+ Method: POST
+ Request Body: JSON object representing the new book
+ Response: Success message or status
 
 4. Update a book
-URL: /books/{id}
-Method: PUT
-Request Body: JSON object representing the updated book details
-Response: JSON object of the updated book
+ URL: /api/update/{id}
+ Method: PUT
+ Request Body: JSON object representing the updated book details
+ Response: Success message or status
 
 5. Delete a book
-URL: /books/{id}
-Method: DELETE
-Response: Success message or status
+ URL: /api/delete/{id}
+ Method: DELETE
+ Response: Success message or status
