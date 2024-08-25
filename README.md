@@ -17,21 +17,21 @@ Before you begin, ensure you have met the following requirements:
 
 ## Installation
 
-### 1. Clone the Repository
-```bash
-git clone https://https://github.com/farzananezri/BookStores.git
+## 1. Clone the Repository
+git clone [https://https://github.com/farzananezri/BookStores.git](https://github.com/farzananezri/BookStores.git)
 cd bookstore-app
 
-### 2. Configure the Database
+## 2. Configure the Database
 Create a database in MySQL (or your preferred database) and update the application.properties file located in src/main/resources/ with your database details
 
-### 3. Build the Application
+## 3. Build the Application
 mvn clean install
 
-### 4. Run the Application
+## 4. Run the Application
 mvn spring-boot:run
 
-### API Endpoints
+## API Endpoints
+
 1. /api/getAllBook
 URL: /books
 Method: GET
