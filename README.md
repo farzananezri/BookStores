@@ -22,7 +22,8 @@ git clone [https://https://github.com/farzananezri/BookStores.git](https://githu
 cd bookstore-app
 
 ## 2. Configure the Database
-Create a database in MySQL (or your preferred database) and update the application.properties file located in src/main/resources/ with your database details
+ 1. Create a database in MySQL (or your preferred database) and update the application.properties file located in src/main/resources/ with your database details
+ 2. Go to file demobook.sql , to create table and insert data
 
 ## 3. Build the Application
 mvn clean install
